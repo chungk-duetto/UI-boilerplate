@@ -30,9 +30,12 @@ jobs:
         with:
           aws-region: us-west-2
 
+      - name: Build project
+        run: npm run build
+
       - name: Copy files to the test website with the AWS CLI
         run: |
-          aws s3 sync . s3://ui-boilerplate-poc
+          aws s3 sync ./dist s3://ui-boilerplate-poc
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
