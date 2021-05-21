@@ -27,6 +27,8 @@ jobs:
 
       - name: Configure AWS credentials from Test account
         uses: aws-actions/configure-aws-credentials@v1
+          with:
+            aws-region: us-west-2
 
       - name: Copy files to the test website with the AWS CLI
         run: |
