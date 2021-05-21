@@ -2,7 +2,7 @@
 
 name: CI
 
-# Controls when the action will run. 
+# Controls when the action will run.
 on:
   # Triggers the workflow on push or pull request events but only for the main branch
   push:
@@ -25,6 +25,12 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
+      - name: Configure AWS credentials from Test account
+        uses: aws-actions/configure-aws-credentials@v1
+
+      - name: Copy files to the test website with the AWS CLI
+        run: |
+          aws s3 sync . s3://ui-boilerplate-poc
       # Runs a single command using the runners shell
       - name: Run a one-line script
         run: echo Hello, world!
